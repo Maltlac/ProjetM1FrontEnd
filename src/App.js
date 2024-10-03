@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import RegistrationForm from './components/RegistrationForm';
+import UserList from './components/UserList';
+import { ToastContainer } from 'react-toastify';
 
-function App() {
+const App = () => {
+  const [refresh, setRefresh] = React.useState(false);
+
+  const refreshUsers = () => {
+    setRefresh(!refresh);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>User Registration</h1>
+      <RegistrationForm refreshUsers={refreshUsers} />
+      <UserList key={refresh} />
+      <ToastContainer />
     </div>
   );
-}
+};
 
 export default App;
